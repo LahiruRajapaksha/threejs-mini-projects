@@ -1,0 +1,22 @@
+{
+  "name": "threejs-learning",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx parcel src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "description": "",
+  "devDependencies": {
+    "parcel": "^2.13.3"
+  },
+  "dependencies": {
+    "@types/three": "^0.174.0",
+    "dat.gui": "^0.7.9",
+    "lil-gui": "^0.20.0",
+    "three": "^0.173.0"
+  }
+}
