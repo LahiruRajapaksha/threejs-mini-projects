@@ -110,8 +110,12 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "include": [
+    "src/**/*", 
     "basics/**/*",
     "solar-system/**/*",
     "custom.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
