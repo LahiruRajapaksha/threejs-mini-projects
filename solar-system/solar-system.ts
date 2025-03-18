@@ -22,6 +22,11 @@ type RingProperties = {
   ringTexture: string;
 };
 
+type ChildProperties = {
+  parentObjectPositionX?: number;
+  parentObjectPositionY?: number;
+};
+
 const renderer = new THREE.WebGLRenderer();
 const width = window.innerWidth;
 const height = window.innerHeight;
@@ -76,7 +81,8 @@ const createPlanets = (
   size: number,
   texture: string,
   position: number,
-  ring?: RingProperties
+  ring?: RingProperties | null,
+  child?: ChildProperties
 ) => {
   const parentObj = new THREE.Object3D();
   const geometry = new THREE.SphereGeometry(size, 30, 30);
@@ -98,6 +104,9 @@ const createPlanets = (
     ringMesh.position.x = position;
     ringMesh.rotation.x = 0.5 * Math.PI;
   }
+  if (child) {
+    parentObj.position.x = child.parentObjectPositionX ?? 0;
+  }
   scene.add(parentObj);
   mesh.position.x = position;
 
@@ -114,10 +123,15 @@ scene.add(sun);
 const mercury = createPlanets(3.2, mercuryTexture, 28);
 const venus = createPlanets(5.8, venusTexture, 44);
 const earth = createPlanets(6, earthTexture, 62);
+const moon = createPlanets(2, moonTexture, 11, null, {
+  parentObjectPositionX: 62,
+});
+earth.parentObj.add(moon.parentObj);
+
 const mars = createPlanets(4, marsTexture, 78);
 const jupitor = createPlanets(12, jupitarTexture, 100);
 const saturn = createPlanets(10, saturnTexture, 138, {
-  innerRadius: 10,
+  innerRadius: 12,
   outerRadius: 20,
   ringTexture: saturnRingTexture,
 });
@@ -134,6 +148,7 @@ const animate = () => {
   mercury.mesh.rotateY(0.004);
   venus.mesh.rotateY(0.002);
   earth.mesh.rotateY(0.02);
+  moon.mesh.rotateY(0.05);
   mars.mesh.rotateY(0.018);
   jupitor.mesh.rotateY(0.04);
   saturn.mesh.rotateY(0.038);
@@ -144,6 +159,7 @@ const animate = () => {
   mercury.parentObj.rotateY(0.04);
   venus.parentObj.rotateY(0.015);
   earth.parentObj.rotateY(0.01);
+  moon.parentObj.rotateY(0.04);
   mars.parentObj.rotateY(0.008);
   jupitor.parentObj.rotateY(0.002);
   saturn.parentObj.rotateY(0.0009);

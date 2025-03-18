@@ -11,6 +11,7 @@
   "type": "commonjs",
   "description": "",
   "devDependencies": {
+    "@types/dat.gui": "^0.7.13",
     "parcel": "^2.13.3"
   },
   "dependencies": {
