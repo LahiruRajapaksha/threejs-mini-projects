@@ -69,6 +69,8 @@ scene.background = cubeTextureLoader.load([
   starsTexture,
   starsTexture,
 ]);
+
+scene.environmentRotation = new THREE.Euler(10, 10, 0);
 /**
  * Add an invisible parent. This is because when we rotate the planets
  * around the Sun, other planets will take the Sun's rotation speed. Becasue others bind to the

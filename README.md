@@ -1,5 +1,3 @@
-[[_TOC_]]
-
 # Basics
 
 # Solar System
